@@ -1,0 +1,4 @@
+#!/bin/bash
+
+scp /Users/lenduya/bin/res/.androidIgnore .
+mv .androidIgnore .gitignore
