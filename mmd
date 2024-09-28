@@ -1,7 +1,7 @@
 #!/bin/bash
 
-ARG3=${3:-'dark'}
-ARG4=${4:-'transparent'}
+ARG3=${3:-dark}
+ARG4=${4:-transparent}
 
-mmdc -i "$1" -o "$2".png -t "$3" -b "$4"
+mmdc -i "$1" -o "$2".png -t "$ARG3" -b "$ARG4"
 
