@@ -1,8 +1,27 @@
 #!/bin/bash
 
-ARG3=${3:-dark}
-ARG4=${4:-transparent}
+DIR="$1"
+FILE="$2"
+THEME=${3:-dark}
+BG=${4:-transparent}
 
-mmdc -i "$1" -o "$2".png -t "$ARG3" -b "$ARG4" --scale 3
+if [ -z "$DIR" ]; then
+  echo "Usage: $0 <directory> [file] [theme] [background]"
+  exit 1
+fi
 
+process() {
+  local input="$1"
+  local output="${input%.mmd}.png"
+  [ -f "$output" ] && rm "$output"
+  mmdc -i "$input" -o "$output" -t "$THEME" -b "$BG" --scale 3
+}
+
+if [ -n "$FILE" ]; then
+  process "$DIR/$FILE"
+else
+  for f in "$DIR"/*.mmd; do
+    [ -f "$f" ] && process "$f"
+  done
+fi
 
